@@ -52,7 +52,7 @@ public class MLang {
         this.defaultVersion = detectMinecraftVersion();
 
         // Create languages directory
-        File langDir = new File(plugin.getDataFolder(), "languages");
+        File langDir = new File(plugin.getDataFolder(), "minecraft_languages");
         if (!langDir.exists()) {
             langDir.mkdirs();
         }
@@ -119,7 +119,7 @@ public class MLang {
         version = version.toLowerCase();
 
         String fileName = languageCode + ".json";
-        File langDir = new File(plugin.getDataFolder(), "languages");
+        File langDir = new File(plugin.getDataFolder(), "minecraft_languages");
         File langFile = new File(langDir, fileName);
 
         // If file already exists and loaded, return true
