@@ -4,14 +4,18 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import lombok.Getter;
 import lombok.extern.java.Log;
-import org.bukkit.Material;
 import org.bukkit.Effect;
+import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -206,6 +210,10 @@ public class MLang {
         return langJson.get(key).getAsString();
     }
 
+    public String getTranslation(Player p, String key) {
+        return getTranslation(p.getLocale().toLowerCase(), key);
+    }
+
     /**
      * Get translation using default language
      *
@@ -228,14 +236,18 @@ public class MLang {
         return getTranslation(languageCode, key);
     }
 
+    public String getMaterialTranslation(Material material) {
+        return getMaterialTranslation(defaultLanguage, material);
+    }
+
     /**
      * Get translation for material with default language
      *
      * @param material Minecraft material
      * @return material translation
      */
-    public String getMaterialTranslation(Material material) {
-        return getMaterialTranslation(defaultLanguage, material);
+    public String getMaterialTranslation(Player p, Material material) {
+        return getMaterialTranslation(p.getLocale().toLowerCase(), material);
     }
 
     /**
@@ -248,6 +260,10 @@ public class MLang {
     public String getEffectTranslation(String languageCode, Effect effect) {
         String key = TranslationKeyGenerator.getEffectKey(effect);
         return getTranslation(languageCode, key);
+    }
+
+    public String getEffectTranslation(Player p, Effect effect) {
+        return getEffectTranslation(p.getLocale().toLowerCase(), effect);
     }
 
     /**
@@ -272,6 +288,10 @@ public class MLang {
         return getTranslation(languageCode, key);
     }
 
+    public String getEnchantmentTranslation(Player p, Enchantment enchantment) {
+        return getEnchantmentTranslation(p.getLocale().toLowerCase(), enchantment);
+    }
+
     /**
      * Get translation for enchantment with default language
      *
@@ -294,6 +314,10 @@ public class MLang {
         return getTranslation(languageCode, key);
     }
 
+    public String getEntityTranslation(Player p, EntityType entityType) {
+        return getEntityTranslation(p.getLocale().toLowerCase(), entityType);
+    }
+
     /**
      * Get translation for entity type with default language
      *
@@ -314,6 +338,10 @@ public class MLang {
     public String getItemStackTranslation(String languageCode, ItemStack itemStack) {
         String key = TranslationKeyGenerator.getItemStackKey(itemStack);
         return getTranslation(languageCode, key);
+    }
+
+    public String getItemStackTranslation(Player p, ItemStack itemStack) {
+        return getItemStackTranslation(p.getLocale().toLowerCase(), itemStack);
     }
 
     /**
