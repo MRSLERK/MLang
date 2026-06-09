@@ -9,6 +9,9 @@ plugins {
     id("com.gradleup.shadow") version "9.4.1"
 }
 
+val javaVersion = providers.gradleProperty("javaVersion").get().toInt()
+val lombokVersion: String by project
+
 group = "me.seetch"
 version = "1.0.0"
 
@@ -17,21 +20,21 @@ repositories {
 }
 
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
+    toolchain.languageVersion.set(JavaLanguageVersion.of(javaVersion))
     withSourcesJar()
 }
 
 tasks.withType<JavaCompile>().configureEach {
     options.encoding = "UTF-8"
-    options.release.set(21)
+    options.release.set(javaVersion)
 }
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.20.4-R0.1-SNAPSHOT")
     implementation("com.google.code.gson:gson:2.10.1")
 
-    compileOnly("org.projectlombok:lombok:1.18.34")
-    annotationProcessor("org.projectlombok:lombok:1.18.34")
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
 }
 
 tasks.named<ShadowJar>("shadowJar") {
