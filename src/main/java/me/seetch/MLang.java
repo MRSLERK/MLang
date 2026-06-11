@@ -143,7 +143,7 @@ public class MLang {
             JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
             if (jsonObject != null) {
                 loadedLanguages.put(languageCode, jsonObject);
-                log.info("Successfully loaded language: " + languageCode);
+             //   log.info("Successfully loaded language: " + languageCode);
                 return true;
             }
         } catch (Exception e) {
