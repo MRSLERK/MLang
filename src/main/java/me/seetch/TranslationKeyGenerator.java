@@ -1,12 +1,12 @@
 package me.seetch;
 
 import lombok.experimental.UtilityClass;
-import org.bukkit.Material;
 import org.bukkit.Effect;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.NamespacedKey;
 
 /**
  * Utility class for generating Minecraft translation keys
